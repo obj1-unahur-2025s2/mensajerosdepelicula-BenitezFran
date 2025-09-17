@@ -21,3 +21,45 @@ test "Neo con crédito no puede entregar un paquete no pago en la Matrix" {
     )
 }
 }
+describe "Segunda parte" {
+
+test "Contratar a un mensajero" {
+  
+    mensajeria.agregarMensajero(roberto)
+    assert.that(mensajeria.mensajeros().contains(roberto))
+}
+
+test "Despedir a un mensajero" {
+    mensajeria.agregarMensajero(roberto)
+    mensajeria.quitarMensajero(roberto)       // despido a Roberto
+    assert.notThat(mensajeria.mensajeros().contains(roberto))
+}
+
+test "Despedir a todos los mensajeros" {
+    mensajeria.agregarATodos()                
+    mensajeria.despedirATodos()              
+    assert.that(mensajeria.mensajeros().isEmpty())
+}
+
+test "Analizar si la mensajería es grande (más de dos mensajeros)" {
+    mensajeria.despedirATodos()
+    mensajeria.agregarATodos()         
+    assert.that(mensajeria.esGrande())
+}
+
+test "Consultar si el paquete puede ser entregado por el primer empleado" {
+    mensajeria.agregarATodos() 
+    neo.cargarCredito()             
+    assert.equals(
+        "El paquete ha sido entregado con exito!",
+        mensajeria.puedeSerEntregadoPorElPrimero()
+    )
+}
+
+test "Saber el peso del último mensajero de la empresa" {
+    mensajeria.despedirATodos()
+    mensajeria.agregarATodos() 
+    assert.equals(80, mensajeria.pesoDelUltimo())
+}
+
+}

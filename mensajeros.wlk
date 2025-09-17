@@ -2,7 +2,13 @@ import destinos.*
 import paquetes.*
 
 // ================= PROGRAMA ================= //
+/*
+mensajeria.agregarATodos()
 
+mensajeria.esGrande()
+
+mensajeria.puedeSerEntregadoPorElPrimero()
+*/
 object mensajeria {
 
 const msjTrabajando = []
@@ -18,7 +24,7 @@ const msjTrabajando = []
         msjTrabajando.remove(unMensajero)
     }
     method despedirATodos() {
-        msjTrabajando.clean()
+        msjTrabajando.clear()
     }
     method agregarATodos() {
         msjTrabajando.addAll([neo, roberto, chuckNorris])
