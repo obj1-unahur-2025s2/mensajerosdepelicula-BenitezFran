@@ -1,79 +1,43 @@
 import destinos.*
 import paquetes.*
-
-// ================= PROGRAMA ================= //
-/*
-mensajeria.agregarATodos()
-
-mensajeria.esGrande()
-
-mensajeria.puedeSerEntregadoPorElPrimero()
-*/
-object mensajeria {
-
-const msjTrabajando = []
-
-    method mensajeros() {
-        return msjTrabajando
-    }
-
-    method agregarMensajero(unMensajero) {
-        msjTrabajando.add(unMensajero)
-    }
-    method quitarMensajero(unMensajero) {
-        msjTrabajando.remove(unMensajero)
-    }
-    method despedirATodos() {
-        msjTrabajando.clear()
-    }
-    method agregarATodos() {
-        msjTrabajando.addAll([neo, roberto, chuckNorris])
-    }
-    method esGrande() {
-        return msjTrabajando.size() > 2
-    }
-    method puedeSerEntregadoPorElPrimero() {
-        return self.entregarPaquete(paquete , msjTrabajando.first(), laMatrix)
-    }
-    method pesoDelUltimo() {
-        return msjTrabajando.last().peso()
-    }
-
-    method entregarPaquete(unPaquete , unMensajero, unDestino){
-        return
-            if(unPaquete.estaPago() and unDestino.puedePasar(unMensajero)){
-                unMensajero.llevarADestino()
-            }else{"El paquete no puede ser entregado!"}
-    }
-}
+import mensajeria.*
 
 // ================= MENSAJEROS ================= //
 
 // ------ ROBERTO TOTOTO------
 object roberto {
 
-var peso = 90
+var vehiculo = bici
 
-    method camion(cantAcoplados){
-        peso = (500 * cantAcoplados) + peso
-    }
-    method bici() {
-        peso += 5
+    method cambiarVehiculo(unVehiculo) {
+      vehiculo = unVehiculo
     }
 
-    method peso() = peso 
+    method peso() = 90 + vehiculo.peso()
+
     method puedeLlamar() = false
 
     method llevarADestino() {
         return "El paquete ha sido entregado con exito!"
     }
 
-    // volveralPesoNormal para probar
-    // method pesoNormal() {
-    //     peso = 90
-    // }
+}
+object bici {
+    method peso() = 5
+}
+object camion {
+
+var acoplado = 1
+
+    method peso() = 500 * (acoplado.max(1))
+
+    method cantAcoplados(cant) {
+      acoplado = cant
+    }
+
 
 }
+
 // ------ CHUCK NORRIS ------
 object chuckNorris {
 
@@ -84,6 +48,7 @@ object chuckNorris {
     method llevarADestino() {
         return "El paquete ha sido entregado con exito!"
     }
+
 }
 // ------ NEO ------
 object neo {
@@ -100,4 +65,5 @@ var tieneCredito = false
     method llevarADestino() {
         return "El paquete ha sido entregado con exito!"
     }
+
 }

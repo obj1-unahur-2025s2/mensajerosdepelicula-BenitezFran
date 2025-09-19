@@ -5,7 +5,7 @@ import mensajeros.*
 describe "Primera parte" {
 
 test "Roberto con camión de un acoplado puede entregar un paquete pago en el Puente de Brooklyn" {
-    roberto.camion(1)
+    camion.cantAcoplados(1)
     assert.equals(
         "El paquete ha sido entregado con exito!",
         mensajeria.entregarPaquete(paquete, roberto, puenteDeBrooklyn)
