@@ -14,6 +14,8 @@ var paquetePagado = true
         paquetePagado = !paquetePagado
     }
     method puedeLlevar(unMensajero) = true
+
+    method precio() = 0
 }
 
 // ------ Paquetito ------
@@ -27,6 +29,7 @@ var unDestino = laMatrix
   }
   method estaPago() = true
   method puedeLlevar(unMensajero) = true
+  method precio() = 0
 
 }
 // ------ Paqueton ------
@@ -35,10 +38,10 @@ object paquetonViajero {
 //puenteDeBrooklyn, laMatrix
 var destinosDelPaquete = []
 var cantDestinosAcum = 0
-var precio = 50 
+var costo = 50 
 
   method registrarPago(unPago){
-    precio -= unPago.min(precio)
+    costo -= unPago.min(costo)
   }
 
   method destino() {
@@ -46,22 +49,22 @@ var precio = 50
   }
 
   method estaPago(){
-    return  precio == 0
+    return  costo == 0
   }
 
   method agregarUnDestino(unDestino) {
     destinosDelPaquete.add(unDestino)
     cantDestinosAcum += 1
-    precio += 100
+    costo += 100
   }
 
 //  COMPROBAR FUNCIONALIDAD
   method puedeLlevar(unMensajero){
 
-    return destinosDelPaquete.all({destino => destino.puedePasar(unMensajero)})
+    return destinosDelPaquete.all({destino => destino.puedePasar(unMensajero)}) && self.estaPago()
   }
 
-  method costo() = precio
+  method precio() = costo
 
 }
 /*
